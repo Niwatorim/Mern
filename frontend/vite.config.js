@@ -7,7 +7,7 @@ export default defineConfig({
   server:{
     proxy:{
       "/api":{
-        target:'https://localhost:5000' //basically everytime /api is called it prefixes with this as a kind of 'proxy'
+        target:'http://localhost:5000' //basically everytime /api is called it prefixes with this as a kind of 'proxy'
       }
     }
   }
