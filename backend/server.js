@@ -6,7 +6,7 @@ dotenv.config();
 import {connect} from './config/db.js';
 
 //getting the routes from other file (scalability)
-import productRoutes from './routes/product.route.js';
+import productRoutes from './routes/product.routes.js';
 
 const app =express(); //Makes express app
 app.use(express.json());//allows app to use json data

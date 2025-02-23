@@ -1,17 +1,40 @@
-import { Box, Button, Container, Input, Stack, Typography } from "@mui/material";
-import { useState } from "react"
+import { Alert, Box, Button, Container, Input, Snackbar, Stack, Typography } from "@mui/material";
+import * as React from "react"
+import { useProductStore } from "../store/product";
+import { useState } from "react";
 
 function CreatePage() {
-  const [newProduct, setNewProduct] = useState({
+  const [newProduct, setNewProduct] = useState({ //newProduct state
     name:'',
     price:'',
     image:'',
   });
 
-  const addproduct = () => {
-    console.log(newProduct);
+  const {createProduct} = useProductStore(); //access global store
+
+  const addproduct = async() => { //adding product function utilizing store
+    const {success,message} = await createProduct(newProduct) //input the newPorduct into zustand function and wait for response, then console.log it
+    console.log('Success:',success);
+    console.log('Message:',message);
+    handleClick();
   }
 
+
+
+  //snackbar code
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <Container>
@@ -45,7 +68,16 @@ function CreatePage() {
             <Button onClick={addproduct}>
               Add product
             </Button>
-
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Alert
+                onClose={handleClose}
+                severity="success"
+                variant="filled"
+                sx={{ width: '100%' }}
+              >
+                This is a success Alert inside a Snackbar!
+              </Alert>
+            </Snackbar>
           </Stack>
         </Box>
 
