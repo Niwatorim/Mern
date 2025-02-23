@@ -16,6 +16,8 @@ function CreatePage() {
     const {success,message} = await createProduct(newProduct) //input the newPorduct into zustand function and wait for response, then console.log it
     console.log('Success:',success);
     console.log('Message:',message);
+
+    setNewProduct({name:'',price:'',image:''})
     handleClick();
   }
 
@@ -75,7 +77,7 @@ function CreatePage() {
                 variant="filled"
                 sx={{ width: '100%' }}
               >
-                This is a success Alert inside a Snackbar!
+                Successfully added!
               </Alert>
             </Snackbar>
           </Stack>
