@@ -2,8 +2,9 @@ import {Container, Grid2, Stack, Typography} from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../store/product'
 import { useEffect } from 'react';
-
+import ProductCard from '../components/ProductCard';
 function HomePage() {
+
   const {fetchProducts, products} = useProductStore();
   useEffect(()=>
   {
@@ -37,18 +38,22 @@ function HomePage() {
             lg:3
           }} //amount of columns per size
           >
-            {products.map((products)=>(
+            {products.map((product)=>(
               <ProductCard key={products._id} product={product} />
             ))}
           </Grid2>
-          <Typography fontSize={'xl'} textAlign={'center'} fontWeight={'bold'} color='gray.500'>
+
+          {products.length === 0 && (
+            <Typography fontSize={'xl'} textAlign={'center'} fontWeight={'bold'} color='gray.500'>
             No Products found {' '}
             <Link href='/create'>
               <Typography color='blue.500' sx={{textDecoration:'none', '&:hover':{textDecoration:'underline'}}}>
                 Create a product
               </Typography>
             </Link>
-          </Typography>
+            </Typography>
+          )}
+          
 
 
 
