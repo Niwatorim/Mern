@@ -46,7 +46,7 @@ function HomePage() {
           {products.length === 0 && (
             <Typography fontSize={'xl'} textAlign={'center'} fontWeight={'bold'} color='gray.500'>
             No Products found {' '}
-            <Link href='/create'>
+            <Link to='/create'>
               <Typography color='blue.500' sx={{textDecoration:'none', '&:hover':{textDecoration:'underline'}}}>
                 Create a product
               </Typography>
